@@ -5,17 +5,22 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
 </head>
 
-{{ form.autocomp.label }}: {{ form.autocomp }}
+
+<form>
+    <input type="text" id="city_autocomplete">
+</form>
 
 <script>
     $(function() {
         $.ajax({
-            url: '{{ url_for("autocomplete") }}'
+            url: '{{ url_for("autocomplete", what_to_get="cities") }}'
             }).done(function (data){
                 $('#city_autocomplete').autocomplete({
                     source: data,
-                    minLength: 2
+                    minLength: 1,
+                    autoFocus: true
                 });
             });
         });
 </script>
+
